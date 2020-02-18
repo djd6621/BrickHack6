@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div id = "logo">
+        <h2><a href = "{{ url_for('home') }}">Gym Homies</a></h2>
+    </div>
+
+    <div id = "menu" class = "menu">
+        <!-- Could create a logo for the website, but for now we can just use text -->
+        <div id = "top_menu_sect" class = "top_menu_sect">
+            <!-- These will be the buttons used to go to each page of the website -->
+            <div id = "menu_button">
+                <p><a href = "{{ url_for('tips') }}">Tips</a></p>
+            </div>
+            <div id = "menu_button">
+                <p><a href = "{{ url_for('workouts') }}">Workouts</a></p>
+            </div>
+            <div id = "menu_button">
+                <p><a href = "{{ url_for('about') }}">About</a></p>
+            </div>
+            <div id = "menu_button">
+                <p><a href = "{{ url_for('my_profile') }}">My Profile</a></p>
+            </div>
+        </div> <!-- End of top_menu_sect -->
+    </div><!-- End of menu -->
+    <div id = "container">
+        <div id = "left_side">
+            <div id = "sidebar">
+                <button id="subnavbtn">
+                    Weightlighting
+                </button>
+                <button id="subnavbtn">Body Building<i class="fa fa-caret-down"></i></button>
+                <button id="subnavbtn">Cardio<i class="fa fa-caret-down"></i></button>
+                <button id="subnavbtn">Callisthenics<i class="fa fa-caret-down"></i></button>
+            </div><!-- end of sidebar -->
+        </div> <!-- end of left_side -->
+
+        <div id = "right_side">
+            {% if t_weights %}
+                {% for tip in t_weights %}
+                    <p>Testing: {{ tip.option }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div>
+        <h1>Add a tip!</h1>
+        <form method="POST">
+            <textarea placeholder="Enter tip!" name="tip"></textarea>
+            <select name="options">
+                <option value="weight lifting">Weight Lifting</option>
+                <option value="Body Builder">Body Builder</option>
+                <option value="Cardio">Cardio</option>
+                <option value="Callisthenics">Callisthenics</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>
